@@ -61,7 +61,7 @@ var getHandlerName = function (req) {
 
 var handlerCacheFromDir = function (dirOrDirs) {
   var handlerCache = {};
-  var jsFileRegex = /\.(coffee|js|ts)$/;
+  var jsFileRegex = /\.(coffee|js|ts|cjs)$/;
   var dirs = [];
 
   if (_.isArray(dirOrDirs)) {
@@ -78,7 +78,7 @@ var handlerCacheFromDir = function (dirOrDirs) {
       var controller;
 
       if (file.match(jsFileRegex)) {
-        controller = require(path.resolve(path.join(dir, controllerName)));
+        controller = require(path.resolve(path.join(dir, file)));
 
         debug('    %s%s:',
               path.resolve(path.join(dir, file)),
